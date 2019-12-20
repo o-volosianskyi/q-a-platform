@@ -3,11 +3,11 @@ class Answer < ApplicationRecord
   include Mongoid::Timestamps
 
   belongs_to :question
-  belongs_to :author
+  belongs_to :user
 
   field :text, type: String
   field :upvotes, type: Integer
   field :most_helpful, type: Boolean
 
-  validates :text, presence: true, length: { minumum: 4 }
+  validates :text, presence: true, length: { minimum: 4 }
 end

@@ -1,15 +1,22 @@
 <div class="root-questions">
   <div class="header"></div>
-  <div class="content-questions">
-    <div class="question">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum eveniet voluptatibus accusamus reiciendis nam autem tenetur praesentium facilis, officiis, perferendis tempore quos quis provident doloremque, odit quidem dicta? Et, nesciunt.</div>
-    <div class="question">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum eveniet voluptatibus accusamus reiciendis nam autem tenetur praesentium facilis, officiis, perferendis tempore quos quis provident doloremque, odit quidem dicta? Et, nesciunt.</div>
-    <div class="question">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum eveniet voluptatibus accusamus reiciendis nam autem tenetur praesentium facilis, officiis, perferendis tempore quos quis provident doloremque, odit quidem dicta? Et, nesciunt.</div>
-    <div class="question">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum eveniet voluptatibus accusamus reiciendis nam autem tenetur praesentium facilis, officiis, perferendis tempore quos quis provident doloremque, odit quidem dicta? Et, nesciunt.</div>
-    <div class="question">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum eveniet voluptatibus accusamus reiciendis nam autem tenetur praesentium facilis, officiis, perferendis tempore quos quis provident doloremque, odit quidem dicta? Et, nesciunt.</div>
-    <div class="question">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum eveniet voluptatibus accusamus reiciendis nam autem tenetur praesentium facilis, officiis, perferendis tempore quos quis provident doloremque, odit quidem dicta? Et, nesciunt.</div>
-    <div class="question">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum eveniet voluptatibus accusamus reiciendis nam autem tenetur praesentium facilis, officiis, perferendis tempore quos quis provident doloremque, odit quidem dicta? Et, nesciunt.</div>
-    <div class="question">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum eveniet voluptatibus accusamus reiciendis nam autem tenetur praesentium facilis, officiis, perferendis tempore quos quis provident doloremque, odit quidem dicta? Et, nesciunt.</div>
-    <div class="question">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum eveniet voluptatibus accusamus reiciendis nam autem tenetur praesentium facilis, officiis, perferendis tempore quos quis provident doloremque, odit quidem dicta? Et, nesciunt.</div>
+  <div class="main-container">
+    <div class="sidebar"></div>
+    <div class="content-questions">
+      <% @questions.each do |question| %>
+        <div class="question">
+          <%= link_to "/questions/#{question['_id']}" do %><h2 class="heading">Awesome question</h2><% end %>
+          <h3 class="description"><%= question['text'].truncate(370) %></h3>
+          <div class="details">
+            <div class="stats">        
+              <div class="answers"><%= question['answers'].length %><div class="stat-icon chat-icon"></div></div>
+              <div class="upvotes"><%= question['upvotes'] || 0%><div class="stat-icon like-icon"></div></div>
+            </div>
+            <div class="author">Bill</div>
+          </div>
+        </div>
+      <% end %>
+    </div>  
   </div>
   <div class="footer"></div>
 </div>

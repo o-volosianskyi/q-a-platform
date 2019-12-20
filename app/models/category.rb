@@ -8,5 +8,5 @@ class Category < ApplicationRecord
 
   validates :name, presence: true,
                    uniqueness: { case_sensitive: false },
-                   length: { minumum: 2 }
+                   length: { minimum: 2 }
 end
