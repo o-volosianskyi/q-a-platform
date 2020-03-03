@@ -141,9 +141,23 @@ html, body{
 
 .author{
   margin-right: 10px;
-  border: 1pt solid black;
-  width: 120px;
+  width: 250px;
   height: 60px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-end;
+}
+
+.author__avatar{
+  height: 60px;
+  width: 60px;
+  border: 1pt solid black;
+}
+
+.author__name{
+  font-size: 1em;
+  margin-left: 10px;
 }
 
 .footer{
