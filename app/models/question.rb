@@ -1,4 +1,4 @@
-class Question < ApplicationRecord
+class Question 
   include Mongoid::Document
   include Mongoid::Timestamps
 
