@@ -1,5 +1,8 @@
 <div class="root-questions">
-  <div class="header"></div>
+  <div class="header">
+    <div class="header-part header-left"></div>
+    <div class="header-part header-right"></div>
+  </div>
   <div class="main-container">
     <div class="sidebar"></div>
     <div class="content-questions">
@@ -13,7 +16,7 @@
               <div class="upvotes"><%= question['upvotes'] || 0%><div class="stat-icon like-icon"></div></div>
             </div>
             <div class="author">
-              <div class="author__avatar"></div>
+              <div class="author__avatar" style = "background-image: url(<%= "uploads/user/avatar/#{question['user'].first["_id"].to_s}/#{question['user'].first["avatar"]}" %>)"></div>
               <div class="author__name"><%= question['user'].first['name'] %></div>
             </div>
           </div>

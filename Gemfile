@@ -39,6 +39,8 @@ gem 'pry'
 gem 'pry-nav'
 gem 'pry-rails'
 gem 'pry-remote'
+gem 'sprockets', '~> 4.0'
+gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
