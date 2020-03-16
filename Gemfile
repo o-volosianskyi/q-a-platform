@@ -39,6 +39,10 @@ gem 'pry'
 gem 'pry-nav'
 gem 'pry-rails'
 gem 'pry-remote'
+gem 'sprockets', '~> 4.0'
+gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
+gem 'tinymce-rails'
+gem 'bootstrap', '~> 4.4.1'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

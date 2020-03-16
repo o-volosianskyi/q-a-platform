@@ -2,16 +2,77 @@
   <div class="header"></div>
   <div class="main-container">
     <div class="sidebar"></div>
+    <!--- Question start-->
     <div class="content-question">
-      <div class="question-details"></div>
-      <div class="answers-container">
-        <div class="answer-details"></div>
-        <div class="answer-details"></div>
-        <div class="answer-details"></div>
-        <div class="answer-details"></div>
-        <div class="answer-details"></div>
+      <div class="question-wrapper">
+        <div class="question-details">
+          <div class="question-details__title"><%= @question['title'] %></div>
+          <div class="post-details__content">
+            <div class="content__sidebar">
+              <div class="sidebar__thumb-up"></div>
+              <div class="sidebar__upvotes-count"><%= @question['upvotes'] %></div>
+            </div>
+            <div class="content__main"><%= @question['text'].html_safe %></div>
+          </div>
+          <div class="post-details__footer">
+            <div class="footer__asked-at">Asked at <%= @question['created_at'] %></div>
+            <div class="footer__author-container">
+              <div class="author-container__avatar" style = "background-image: url(<%= "/uploads/user/avatar/#{@question['user'].first["_id"].to_s}/#{@question['user'].first["avatar"]}" %>)"></div>
+              <div class="author-container__name"><%= @question['user'].first['name'] %></div>
+            </div>
+          </div>
+        </div>
+        <div class="question-details__bottom"></div>
       </div>
-    </div>  
+      <!--- Question start-->
+      <!--- Answers start -->
+      <div class="answers-container">
+        <% @question['answers'].each do |answer| %>
+          <div class="answer-wrapper">
+            <div class="answer-details">
+              <div class="actions-container">
+                <%= form_with(url: "/answers", method: "patch") do |f|%>
+                  <%= f.hidden_field :question_id, value: @question['_id'] %>
+                  <%= f.submit "Edit", class: "edit" %>
+                <% end %>
+                <%= link_to('Delete', "/answers/#{answer['_id']}", method: :delete, remote: true, "data-toggle": "modal", "data-target": '#modal-window')  %>
+                <div id="modal-window" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content"></div>
+                  </div>
+                </div>
+
+              </div>
+              <div class="post-details__content">
+                <div class="content__sidebar">
+                  <div class="sidebar__thumb-up"></div>
+                  <div class="sidebar__upvotes-count"><%= answer['upvotes'] || 0 %></div>
+                </div>
+                <div class="content__main"><%= answer['text'].html_safe %></div>
+              </div>
+              <div class="post-details__footer answer__footer">
+                <div class="footer__asked-at">Replied at <%= answer['created_at'] %></div>
+                <div class="footer__author-container">
+                  <div class="author-container__avatar" style = "background-image: url(<%= "/uploads/user/avatar/#{answer['user']["_id"].to_s}/#{answer['user']["avatar"]}" %>)"></div>
+                  <div class="author-container__name"><%= answer['user']['name'] %></div>
+                </div>
+              </div>
+            </div>
+            <div class="answer-details__bottom"></div>
+          </div>
+        <% end %>
+        
+        <%= form_with(url: "/answers", method: "post") do |f|%>
+          <%= f.text_area :text, rows: 5, cols: 25, :class => "tinymce" %>
+          <%= f.hidden_field :question_id, value: @question['_id'] %>
+          <%= f.submit("TEST") %>
+        <% end %>
+      </div>
+      <!--- Answers end -->
+    </div>
   </div>
   <div class="footer"></div>
+  
 </div>
+<%= tinymce_assets %>
+<%= tinymce %>
