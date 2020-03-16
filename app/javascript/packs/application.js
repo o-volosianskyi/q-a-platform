@@ -7,10 +7,13 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require popper
+//= require bootstrap-sprockets
+//= require tinymce 
+//= require tinymce-jquery
 //= require_tree .
 //= require modernizr
 //= require froala_editor.min.js
-
 require("@rails/ujs").start()
 require("turbolinks").start()
 require("@rails/activestorage").start()

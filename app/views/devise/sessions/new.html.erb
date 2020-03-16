@@ -1,0 +1,30 @@
+<div class="container" style="width: 300px">
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+
+    <div class="form-group">
+      <label for="exampleInputEmail1">Email address</label>
+      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+      <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+    </div>
+
+    <div class="form-group">
+      <label for="exampleInputPassword1">Password</label>
+      <input type="password" class="form-control" id="exampleInputPassword1">
+    </div>
+
+    <% if devise_mapping.rememberable? %>
+      <div class="form-check">
+        <%= f.check_box :remember_me, class: 'form-check-input', id: 'remember-me' %>
+        <label class="form-check-label" for="remember-me">
+          Default checkbox
+        </label>
+      </div>
+    <% end %>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+
+    <div class="form-group">
+      <%= render "devise/shared/links" %>
+    </div>
+  <% end %>
+</div>
