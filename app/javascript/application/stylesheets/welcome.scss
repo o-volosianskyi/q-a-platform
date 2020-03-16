@@ -84,14 +84,14 @@ h1, h2, h3{
   box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0);
 
   .icon-public{
-    background-image: asset-url('questions_hover.svg');
+    background-image: url('questions_hover.svg');
   }
 }
 
 .icon-public{
   width: 40%;
   height: 35%;
-  background-image: asset-url('questions.svg');
+  background-image: url('questions.svg');
   background-size: 100% 100%;
   transition-duration: 0.3s;
 }

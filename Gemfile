@@ -25,8 +25,6 @@ gem 'jbuilder', '~> 2.7'
 # gem 'image_processing', '~> 1.2'
 
 # Reduces boot times through caching; required in config/boot.rb
-gem 'bootsnap', '>= 1.4.2', require: false
-
 gem 'listen', '>= 3.0.5', '< 3.2'
 
 gem 'mongoid'
@@ -34,15 +32,13 @@ gem 'mongoid'
 gem 'devise'
 
 gem 'jquery-rails'
+gem 'sqlite3'
 
 gem 'pry'
 gem 'pry-nav'
 gem 'pry-rails'
 gem 'pry-remote'
-gem 'sprockets', '~> 4.0'
 gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
-gem 'tinymce-rails'
-gem 'bootstrap', '~> 4.4.1'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

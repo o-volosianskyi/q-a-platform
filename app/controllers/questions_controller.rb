@@ -1,5 +1,5 @@
 class QuestionsController < ApplicationController
-  include TinyMCE::Rails::Helper
+  #include TinyMCE::Rails::Helper
 
   def index
     lookups_answers_users = [{
@@ -23,6 +23,7 @@ class QuestionsController < ApplicationController
   def create
     binding.pry
   end
+  
 
   def show
     question_lookup_answers_users = [{

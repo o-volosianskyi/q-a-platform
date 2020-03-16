@@ -22,7 +22,10 @@
           </div>
         </div>
       <% end %>
-    </div>  
+    </div>
+    <%= link_to new_question_path, remote: true do %>
+    <div class="create-question"></div>
+    <% end %>
   </div>
   <div class="footer"></div>
 </div>

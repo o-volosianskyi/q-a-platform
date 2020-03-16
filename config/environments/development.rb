@@ -38,6 +38,9 @@ Rails.application.configure do
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
 
+  # config.active_record.mass_assignment_sanitizer = :strict
+  # config.active_record.auto_explain_threshold_in_seconds = 0.5
+
   # Raise an error on page load if there are pending migrations.
   #config.active_record.migration_error = :page_load
 

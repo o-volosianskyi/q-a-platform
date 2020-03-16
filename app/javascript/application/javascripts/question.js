@@ -20,4 +20,9 @@ $(function(){
     });
     $(node).unbind();
   });
+
+});
+
+$(document).ready(() => {
+  $(".create-question__icon").removeClass("create-question__icon")
 });
