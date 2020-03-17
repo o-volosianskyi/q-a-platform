@@ -169,11 +169,11 @@ html, body{
 }
 
 .like-icon{
-  background-image: asset-url('like.svg');
+  background-image: url('images/like.svg');
 }
 
 .chat-icon{
-  background-image: asset-url('chat.svg');
+  background-image: url('images/chat.svg');
   background-position-y: 3px;
 }
 

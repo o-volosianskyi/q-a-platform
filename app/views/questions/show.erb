@@ -31,11 +31,8 @@
           <div class="answer-wrapper">
             <div class="answer-details">
               <div class="actions-container">
-                <%= form_with(url: "/answers", method: "patch") do |f|%>
-                  <%= f.hidden_field :question_id, value: @question['_id'] %>
-                  <%= f.submit "Edit", class: "edit" %>
-                <% end %>
-                <%= link_to('Delete', "/answers/#{answer['_id']}", method: :delete, remote: true, "data-toggle": "modal", "data-target": '#modal-window')  %>
+                <%= link_to('Delete', "/answers/#{answer['_id']}", method: :delete, remote: true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window')  %>
+                <%= link_to 'New', new_answer_path,  {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window', class: 'btn btn-primary btn-lg', form: { "data-type" => "script" }}  %>
                 <div id="modal-window" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                   <div class="modal-dialog" role="document">
                     <div class="modal-content"></div>
@@ -74,5 +71,3 @@
   <div class="footer"></div>
   
 </div>
-<%= tinymce_assets %>
-<%= tinymce %>

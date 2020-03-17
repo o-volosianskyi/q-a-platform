@@ -1,5 +1,5 @@
 class QuestionsController < ApplicationController
-  include TinyMCE::Rails::Helper
+  #include TinyMCE::Rails::Helper
 
   def index
     lookups_answers_users = [{
