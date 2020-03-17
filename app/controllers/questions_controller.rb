@@ -28,7 +28,6 @@ class QuestionsController < ApplicationController
   end
 
   def create
-    binding.pry
   end
 
   def show

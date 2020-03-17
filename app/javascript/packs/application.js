@@ -18,12 +18,6 @@ $ = jquery
 window.$ = jquery
 window.jQuery = jquery
 
-$(function(){
-  $('#questions-card').on('click', () => {
-    window.location.replace('/questions')
-  });
-});
-
 // JavaScript
 let webpackContext = require.context('./javascripts', true, /\.js$/)
 for(let key of webpackContext.keys()) { webpackContext(key) }
