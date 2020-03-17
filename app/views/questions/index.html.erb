@@ -22,7 +22,15 @@
           </div>
         </div>
       <% end %>
-    </div>  
+    </div>
+    <%= link_to new_question_path, {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window-new-question', form: { "data-type" => "script" }} do %>
+      <div class="create-question"><i class="fas fa-plus-circle create-question__icon" id="create-question__icon"></i></div>
+    <% end %>
+    <div id="modal-window-new-question" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content"></div>
+      </div>
+    </div>
   </div>
   <div class="footer"></div>
 </div>

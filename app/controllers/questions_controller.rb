@@ -20,6 +20,13 @@ class QuestionsController < ApplicationController
     @questions = Question.collection.aggregate(lookups_answers_users)
   end
 
+  def new
+    respond_to do |format|
+      format.html
+      format.js
+    end
+  end
+
   def create
     binding.pry
   end

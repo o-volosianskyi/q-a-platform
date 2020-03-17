@@ -25,4 +25,6 @@ class User
   ## Rememberable
   field :remember_created_at, type: Time
 
+  def will_save_change_to_email? 
+  end
 end
