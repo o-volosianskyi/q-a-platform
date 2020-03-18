@@ -1,2 +1,51 @@
 $("#modal-window-new-question").find(".modal-content").html("<%= j (render 'create_form') %>");
 $("#modal-window-new-question").modal();
+
+var toolbarOptions = [
+  ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
+  ['blockquote', 'code-block'],
+
+  [{ 'header': 1 }, { 'header': 2 }],               // custom button values
+  [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+  [{ 'script': 'sub'}, { 'script': 'super' }],      // superscript/subscript
+  [{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
+  [{ 'direction': 'rtl' }],                         // text direction
+
+  [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
+  [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+
+  [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
+  [{ 'font': [] }],
+  [{ 'align': [] }],
+
+  ['clean']                                         // remove formatting button
+];
+
+var quill = new Quill('#document-full', {
+  modules: {
+    toolbar: toolbarOptions
+  },
+  theme: 'snow'
+});
+
+$('#create-question__button').on('click', () => {
+  const title = document.getElementById('question-title').value
+  const category_id = document.getElementById('question-category').getAttribute('value')
+  const question = document.getElementById('document-full').firstChild.innerHTML
+  debugger;
+  $.ajax({
+    url: "/questions",
+    type: "post",
+    data: {
+      title: title,
+      text: question,
+      category_id: category_id
+    },
+    success: function(data) { Rails.$(".random-number")[0].innerHTML = data.html; }
+  });  
+});
+
+$('.question-category__option').on('click', (e) => {
+  document.getElementById('question-category').innerText = e.target.innerText
+  document.getElementById('question-category').setAttribute('value', e.target.getAttribute('value'))
+});

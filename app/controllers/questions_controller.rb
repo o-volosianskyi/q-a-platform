@@ -25,9 +25,13 @@ class QuestionsController < ApplicationController
       format.html
       format.js
     end
+    @categories = Category.all
   end
 
   def create
+    
+    binding.pry
+    
   end
 
   def show
