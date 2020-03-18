@@ -1,10 +1,16 @@
 require 'faker'
 
-10.times { User.create!(name: Faker::Name.name) }
+10.times do 
+  User.create!(name: Faker::Name.name,
+               email: Faker::Internet.email,
+               password: Faker::Internet.password) 
+end
+
 loop do 
-  Category.create(name: Faker::ProgrammingLanguage.name)
+  Category.create!(name: Faker::ProgrammingLanguage.name)
   break if Category.count == 15
 end
+
 20.times do 
   Question.create!(title: Faker::Lorem.sentence(word_count: 3), 
                    text: Faker::Lorem.sentence(word_count: 45),

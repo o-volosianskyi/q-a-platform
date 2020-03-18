@@ -285,7 +285,6 @@ DEPENDENCIES
   selenium-webdriver
   spring
   spring-watcher-listen (~> 2.0.0)
-  sprockets (~> 4.0)
   turbolinks (~> 5)
   tzinfo-data
   web-console (>= 3.3.0)
@@ -296,4 +295,4 @@ RUBY VERSION
    ruby 2.6.3p62
 
 BUNDLED WITH
-   2.0.2
+   2.1.4

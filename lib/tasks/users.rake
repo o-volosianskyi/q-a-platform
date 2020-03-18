@@ -15,4 +15,11 @@ namespace :users do
       File.delete(image_path) if File.exist?(image_path)
     end
   end
+
+  desc "Add fake emails to users without emails"
+  task fake_emails_for_users: :environment do
+    User.where(email: nil).each do |user|
+      user.update!(email: Faker::Internet.email)
+    end
+  end
 end

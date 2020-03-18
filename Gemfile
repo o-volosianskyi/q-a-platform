@@ -39,7 +39,6 @@ gem 'pry'
 gem 'pry-nav'
 gem 'pry-rails'
 gem 'pry-remote'
-gem 'sprockets', '~> 4.0'
 gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
 
 group :development, :test do
