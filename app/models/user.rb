@@ -2,7 +2,7 @@ class User
   include Mongoid::Document
   include Mongoid::Timestamps
   
-#  mount_uploader :avatar, AvatarUploader
+  mount_uploader :avatar, AvatarUploader
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
