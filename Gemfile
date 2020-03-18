@@ -32,7 +32,6 @@ gem 'listen', '>= 3.0.5', '< 3.2'
 gem 'mongoid'
 
 gem 'devise'
-gem 'sqlite3'
 
 gem 'jquery-rails'
 
