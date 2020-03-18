@@ -17,12 +17,12 @@ class AnswersController < ActionController::Base
   end
 
   def destroy
+    Answer.find(params[:id]).destroy!
+    redirect_to "/questions/#{params[:question_id]}"
     respond_to do |format|
       format.html
       format.js
     end    
-    #Answer.find(params[:id]).destroy!
-    #redirect_to "/questions/#{params[:question_id]}"
   end
 
   def show
