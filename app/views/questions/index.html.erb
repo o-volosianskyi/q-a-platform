@@ -9,7 +9,7 @@
       <% @questions.each do |question| %>
         <div class="question">
           <%= link_to "/questions/#{question['_id']}" do %><h2 class="heading"><%= question['title'] %></h2><% end %>
-          <h3 class="description"><%= question['text'].truncate(370) %></h3>
+          <h3 class="description"><%= question['text'].truncate(370).html_safe %></h3>
           <div class="details">
             <div class="stats">        
               <div class="answers"><%= question['answers'].length %><div class="stat-icon chat-icon"></div></div>

@@ -31,21 +31,55 @@ var quill = new Quill('#document-full', {
 $('#create-question__button').on('click', () => {
   const title = document.getElementById('question-title').value
   const category_id = document.getElementById('question-category').getAttribute('value')
-  const question = document.getElementById('document-full').firstChild.innerHTML
-  debugger;
+  const text = document.getElementById('document-full').firstChild.innerHTML
+  createQuestion(title, text, category_id);
+});
+
+async function createQuestion(title, text, category_id) {
+  await animateProgress(0);
   $.ajax({
     url: "/questions",
     type: "post",
     data: {
       title: title,
-      text: question,
+      text: text,
       category_id: category_id
     },
-    success: function(data) { Rails.$(".random-number")[0].innerHTML = data.html; }
-  });  
-});
+    success: function(data) {
+      $('#modal-window-new-question').modal('toggle'); 
+    },
+    error: function(data) { 
+      $('#create-question__progress').addClass('d-none');
+      $("#create-question__progress-bar").css("width", 0);    
+      $("#create-question__error").removeClass('d-none');
+      let error = JSON.stringify(data.responseText).match("summary:(.*)resolution")[1].replace(/\\n/g, "")
+      $("#create-question__error").append(`<br/> (${error})`)
+     }
+  }); 
+}
+
+const animateProgress = (start) => {
+  return new Promise(resolve => {
+    $('#create-question__progress').removeClass('d-none');
+    interval = setInterval(() => {
+      start+=10
+      $("#create-question__progress-bar").css("width", start)
+      if ($("#create-question__progress-bar").css("width")==$("#create-question__progress").css("width")) {
+        resolve()
+        clearInterval(interval)
+      }
+    }, 10);
+  });
+}
+
 
 $('.question-category__option').on('click', (e) => {
   document.getElementById('question-category').innerText = e.target.innerText
   document.getElementById('question-category').setAttribute('value', e.target.getAttribute('value'))
 });
+
+$('#modal-window-new-question').on('hidden.bs.modal', function () {
+  $("#create-question__error").addClass('d-none')
+  $('#create-question__progress').addClass('d-none');
+  $("#create-question__progress-bar").css("width", 0)
+})
