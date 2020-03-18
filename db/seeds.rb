@@ -7,9 +7,10 @@ require 'faker'
 end
 
 loop do 
-  Category.create(name: Faker::ProgrammingLanguage.name)
+  Category.create!(name: Faker::ProgrammingLanguage.name)
   break if Category.count == 15
 end
+
 20.times do 
   Question.create!(title: Faker::Lorem.sentence(word_count: 3), 
                    text: Faker::Lorem.sentence(word_count: 45),
