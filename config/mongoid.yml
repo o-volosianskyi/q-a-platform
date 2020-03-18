@@ -79,3 +79,16 @@ test:
         write:
           mode: :primary
         max_pool_size: 1
+
+
+production:
+  sessions:
+    default:
+      database: qa_platform_production
+      hosts: ["<%= ENV['QA_PLATFORM_PRODUCTION_ADDRESS']%>:27017"]
+
+staging:
+  sessions:
+    default:
+      database: qa_platform_staging
+      hosts: ["<%= ENV['QA_PLATFORM_STAGING_ADDRESS']%>:27017"]
