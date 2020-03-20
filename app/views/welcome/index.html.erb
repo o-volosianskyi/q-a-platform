@@ -5,8 +5,7 @@
         <%= link_to "Sign out", destroy_user_session_path, :method => :delete, :class => 'btn btn-small' %>
       <% else %>
         <%= link_to "Sign in", "users/sign_in", {:remote => true, class: 'btn btn-primary h-50', 'data-toggle' =>  "modal", 'data-target' => '#modal-window-sign-in', form: { "data-type" => "script" }} %>
-        <%= link_to "Sign up", "#sign_up", "data-toggle" => "modal", :class => 'btn btn-small' %>
-        <%= render 'shared/sign_up' %>
+        <%= link_to "Sign up", "users/sign_up", {:remote => true, class: 'btn btn-primary h-50', 'data-toggle' =>  "modal", 'data-target' => '#modal-window-sign-in', form: { "data-type" => "script" }} %>
       <% end %>
     </div>
     <div id="modal-window-sign-in" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
