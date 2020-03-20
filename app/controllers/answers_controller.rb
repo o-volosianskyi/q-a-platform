@@ -2,9 +2,9 @@ class AnswersController < ActionController::Base
   protect_from_forgery except: :new
   
   def create
-    permitted_params = params.permit(:question_id, :text)
+    permitted_params = params.permit(:question_id, :text, :format)
     Answer.create!(text: permitted_params[:text],
-                   user_id: User.first.id,
+                   user_id: current_user.id,
                    question: permitted_params[:question_id])
     redirect_to "/questions/#{params[:question_id]}"
   end

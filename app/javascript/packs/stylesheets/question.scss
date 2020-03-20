@@ -163,7 +163,7 @@
 .answers-container{
   margin-top: 50px;
   width: 100%;
-  height: 1000px;
+  //height: 1000px;
   display: flex;
   flex-direction: column;
 }
@@ -228,4 +228,43 @@
 .tox-tinymce{
   height: 350px !important;
   margin-top: 10px;
+}
+
+.create-answer__textarea{
+  min-height: 300px;
+  background-color: rgba(255, 255, 255, 0.644);
+}
+
+.root-questions .ql-toolbar {
+  background-color: rgba(255, 255, 255, 0.644);
+  margin-top: 10px;
+}
+
+.create-answer__footer {
+  width: 100%;
+  height: 50px;
+  background-color: rgba(255, 255, 255, 0.644);
+  border: 1px solid #ccc;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.create-answer__button {
+  margin-right: 10px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.create-answer__error:not(.d-none){
+  margin-bottom: 0px !important;
+}
+
+.create-answer__footer--with-error{
+  justify-content: space-between !important;
+  background-color: #f8d7da !important;
+  border-color: #f5c6cb !important;
 }

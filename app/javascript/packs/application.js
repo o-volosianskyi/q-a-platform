@@ -23,7 +23,7 @@ let webpackContext = require.context('./javascripts', true, /\.js$/)
 for(let key of webpackContext.keys()) { webpackContext(key) }
 
 // Images
-require.context('./images', true, /\.(?:png|jpg|gif|ico|svg)$/)
+// require.context('./images', true, /\.(?:png|jpg|gif|ico|svg)$/)
 
 // Stylesheets
 require.context('./stylesheets', true, /\.sass$/)

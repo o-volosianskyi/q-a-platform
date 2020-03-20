@@ -1,5 +1,5 @@
 <div class="root-questions">
-  <div class="header"></div>
+  <%= render 'shared/header' %>
   <div class="main-container">
     <div class="sidebar"></div>
     <!--- Question start-->
@@ -17,7 +17,9 @@
           <div class="post-details__footer">
             <div class="footer__asked-at">Asked at <%= @question['created_at'] %></div>
             <div class="footer__author-container">
-              <div class="author-container__avatar" style = "background-image: url(<%= "/uploads/user/avatar/#{@question['user'].first["_id"].to_s}/#{@question['user'].first["avatar"]}" %>)"></div>
+              <div class="author-container__avatar"
+                style="background-image: url(<%= "/uploads/user/avatar/#{@question['user'].first["_id"].to_s}/#{@question['user'].first["avatar"]}" %>)">
+              </div>
               <div class="author-container__name"><%= @question['user'].first['name'] %></div>
             </div>
           </div>
@@ -28,45 +30,56 @@
       <!--- Answers start -->
       <div class="answers-container">
         <% @question['answers'].each do |answer| %>
-          <div class="answer-wrapper">
-            <div class="answer-details">
-              <div class="actions-container">
-                <%= link_to 'New', new_answer_path,  {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window', class: 'btn btn-primary btn-lg', form: { "data-type" => "script" }}  %>
-                <div id="modal-window" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                  <div class="modal-dialog" role="document">
-                    <div class="modal-content"></div>
-                  </div>
+        <div class="answer-wrapper">
+          <div class="answer-details">
+            <div class="actions-container">
+              <%= link_to 'New', new_answer_path,  {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window', class: 'btn btn-primary btn-lg', form: { "data-type" => "script" }}  %>
+              <div id="modal-window" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content"></div>
                 </div>
+              </div>
 
+            </div>
+            <div class="post-details__content">
+              <div class="content__sidebar">
+                <div class="sidebar__thumb-up"></div>
+                <div class="sidebar__upvotes-count"><%= answer['upvotes'] || 0 %></div>
               </div>
-              <div class="post-details__content">
-                <div class="content__sidebar">
-                  <div class="sidebar__thumb-up"></div>
-                  <div class="sidebar__upvotes-count"><%= answer['upvotes'] || 0 %></div>
+              <div class="content__main"><%= answer['text'].html_safe %></div>
+            </div>
+            <div class="post-details__footer answer__footer">
+              <div class="footer__asked-at">Replied at <%= answer['created_at'] %></div>
+              <div class="footer__author-container">
+                <div class="author-container__avatar"
+                  style="background-image: url(<%= "/uploads/user/avatar/#{answer['user']["_id"].to_s}/#{answer['user']["avatar"]}" %>)">
                 </div>
-                <div class="content__main"><%= answer['text'].html_safe %></div>
-              </div>
-              <div class="post-details__footer answer__footer">
-                <div class="footer__asked-at">Replied at <%= answer['created_at'] %></div>
-                <div class="footer__author-container">
-                  <div class="author-container__avatar" style = "background-image: url(<%= "/uploads/user/avatar/#{answer['user']["_id"].to_s}/#{answer['user']["avatar"]}" %>)"></div>
-                  <div class="author-container__name"><%= answer['user']['name'] %></div>
-                </div>
+                <div class="author-container__name"><%= answer['user']['name'] %></div>
               </div>
             </div>
-            <div class="answer-details__bottom"></div>
           </div>
-        <% end %>
-        
-        <%= form_with(url: "/answers", method: "post") do |f|%>
-          <%= f.text_area :text, rows: 5, cols: 25, :class => "tinymce" %>
-          <%= f.hidden_field :question_id, value: @question['_id'] %>
-          <%= f.submit("TEST") %>
+          <div class="answer-details__bottom"></div>
+        </div>
         <% end %>
       </div>
       <!--- Answers end -->
+      <% if current_user %>
+        <div id="create-answer" class="create-answer__textarea"></div>
+        <div class="progress d-none" id="create-answer__progress">
+          <div id="create-answer__progress-bar" class="progress-bar progress-bar-striped progress-bar-animated"
+            role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div>
+        </div>
+        <div id="question_id" class="d-none" value="<%= @question["_id"].to_s %>"></div>
+        <div class="create-answer__footer">
+          <div class="alert alert-danger d-none create-answer__error" role="alert" id="create-answer__error">
+            Oops! Couldn't create your answer.
+          </div>
+          <div class="btn btn-primary create-answer__button" id="create-answer__button">Submit answer</div>
+        </div>
+      <% end %>
     </div>
   </div>
   <div class="footer"></div>
-  
+
 </div>
