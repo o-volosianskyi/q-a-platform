@@ -1,0 +1,56 @@
+.global-header{
+  background-color: white;
+  width: 100%;
+  height: 10%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.global-header .logo {
+  margin-left: 10px;
+  width: 200px;
+  height: 90%;
+  border: 1pt solid black;
+}
+
+.global-header .user-actions {
+  margin-left: 500px !important;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.global-header .user-actions:hover {
+  cursor: pointer;
+  .user-actions__icon {
+    color: black;
+  }
+}
+
+.user-actions__icon {
+  font-size: 4em;
+  color: rgb(53, 52, 52);
+  transition-duration: 0.3s;
+}
+
+.dropdown__user{
+  margin-right: 100px !important;
+}
+
+.dropdown__user .dropdown-menu.show {
+  min-height: 100px;
+  margin: 1.2rem 0 0;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.user-actions__button {
+  width: 100px;
+  height: 40px;
+}
