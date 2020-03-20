@@ -26,6 +26,8 @@ module QAPlatform
       g.orm :mongoid
     end
 
+    config.assets.check_precompiled_asset = false
+
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading

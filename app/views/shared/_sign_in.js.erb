@@ -1,0 +1,13 @@
+$("#modal-window-sign-in").find(".modal-content").html("<%= j (render 'sign_in_form') %>");
+$("#modal-window-sign-in").modal();
+
+$('#sign_in_user')
+.bind('ajax:success', function(evt, data, status, xhr) {
+  //function called on status: 200 (for ex.)
+  $('#modal-window-sign-in').modal('toggle');
+  $("#session-actions").empty().html('<%= link_to "Sign out", destroy_user_session_path, :method => :delete, :class => "btn btn-small" %>')
+})
+.bind("ajax:error", function(evt, xhr, status, error) {
+  //function called on status: 401 or 500 (for ex.)
+  console.log(xhr.responseText);
+});

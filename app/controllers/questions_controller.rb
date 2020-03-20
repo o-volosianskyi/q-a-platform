@@ -29,7 +29,7 @@ class QuestionsController < ApplicationController
 
   def create
     permitted_params = params.permit(:category_id, :text, :title, :user_id)
-    permitted_params[:user_id] = User.first.id # change when implement sign_in/sessions
+    permitted_params[:user_id] = current_user['id'] # change when implement sign_in/sessions
     question = Question.create!(permitted_params)
     render json: question
   end

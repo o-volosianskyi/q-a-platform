@@ -1,5 +1,20 @@
 <div class="root">
-  <div class="header"></div>
+  <div class="header">
+    <div id="session-actions">
+      <% if current_user %>
+        <%= link_to "Sign out", destroy_user_session_path, :method => :delete, :class => 'btn btn-small' %>
+      <% else %>
+        <%= link_to "Sign in", "users/sign_in", {:remote => true, class: 'btn btn-primary h-50', 'data-toggle' =>  "modal", 'data-target' => '#modal-window-sign-in', form: { "data-type" => "script" }} %>
+        <%= link_to "Sign up", "#sign_up", "data-toggle" => "modal", :class => 'btn btn-small' %>
+        <%= render 'shared/sign_up' %>
+      <% end %>
+    </div>
+    <div id="modal-window-sign-in" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content"></div>
+      </div>
+    </div>
+  </div>
   <div class="content">
     <div class="headline">
       <h1>Snack overflow</h1>
