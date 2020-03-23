@@ -1,0 +1,52 @@
+$("#modal-window-delete-answer").find(".modal-content").html("<%= j (render 'delete_form') %>");
+$("#modal-window-delete-answer").modal();
+$(".main-container").addClass("blurred");
+
+$('#remove-answer__button').on('click', (e) => {
+  answer_id = document.getElementById("answer_id").getAttribute("value")
+  deleteAnswer(answer_id, e);
+});
+
+$('#remove-answer__button-cancel').on('click', (e) => {
+  $('#modal-window-delete-answer').modal('toggle');
+  $(".main-container").removeClass("blurred");
+});
+
+$("#close-delete-answer-modal").on('click', () => {
+  $(".main-container").removeClass("blurred");
+  $('#modal-window-delete-answer').modal('toggle');
+});
+
+async function deleteAnswer(answer_id, e) {
+  await animateProgress(0);
+  $.ajax({
+    url: `/answers/${answer_id}`,
+    type: "delete",
+    success: function(data) {
+      $('#modal-window-delete-answer').modal('toggle');
+      $(`#answer-id-${answer_id}`).remove();
+      $(".main-container").removeClass("blurred");
+    },
+    error: function(data) { 
+      $('#remove-answer__progress').addClass('d-none');
+      $("#remove-answer__progress-bar").css("width", 0);    
+      $("#remove-answer__error").removeClass('d-none');
+      let error = JSON.stringify(data.responseText).match("summary:(.*)resolution")[1].replace(/\\n/g, "")
+      $("#remove-answer__error").append(`<br/> (${error})`)
+     }
+  }); 
+}
+
+animateProgress = (start) => {
+  return new Promise(resolve => {
+    $('#remove-answer__progress').removeClass('d-none');
+    interval = setInterval(() => {
+      start+=10
+      $("#remove-answer__progress-bar").css("width", start)
+      if ($("#remove-answer__progress-bar").css("width")==$("#remove-answer__progress").css("width")) {
+        resolve()
+        clearInterval(interval)
+      }
+    }, 10);
+  });
+}

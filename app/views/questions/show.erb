@@ -30,17 +30,12 @@
       <!--- Answers start -->
       <div class="answers-container">
         <% @question['answers'].each do |answer| %>
-        <div class="answer-wrapper">
+        <div class="answer-wrapper" id="answer-id-<%= answer['_id'] %>">
           <div class="answer-details">
             <div class="actions-container">
-              <%= link_to 'New', new_answer_path,  {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window', class: 'btn btn-primary btn-lg', form: { "data-type" => "script" }}  %>
-              <div id="modal-window" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                  <div class="modal-content"></div>
-                </div>
-              </div>
-
+              <%= link_to "/answers/delete?answer_id=#{answer['_id'].to_s}",  {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window', class: 'btn btn-primary btn-lg', form: { "data-type" => "script" }} do %>
+                <i class="fas fa-trash-alt"></i>
+              <% end %>
             </div>
             <div class="post-details__content">
               <div class="content__sidebar">
@@ -78,6 +73,12 @@
           <div class="btn btn-primary create-answer__button" id="create-answer__button">Submit answer</div>
         </div>
       <% end %>
+    </div>
+  </div>
+  <div id="modal-window-delete-answer" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document" style="width: 300px">
+      <div class="modal-content" style="margin-top: 150px"></div>
     </div>
   </div>
   <div class="footer"></div>

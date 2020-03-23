@@ -9,20 +9,18 @@ class AnswersController < ActionController::Base
     redirect_to "/questions/#{params[:question_id]}"
   end
 
-  def new
+  def delete_answer
     respond_to do |format|
       format.html
       format.js
     end
+    @answer_id = params[:answer_id]
+    render '../views/answers/delete'
   end
 
   def destroy
-    Answer.find(params[:id]).destroy!
-    redirect_to "/questions/#{params[:question_id]}"
-    respond_to do |format|
-      format.html
-      format.js
-    end    
+    answer = Answer.find(params[:id]).destroy!
+    render json: answer
   end
 
   def show
