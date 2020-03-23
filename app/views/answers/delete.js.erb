@@ -9,12 +9,6 @@ $('#remove-answer__button').on('click', (e) => {
 
 $('#remove-answer__button-cancel').on('click', (e) => {
   $('#modal-window-delete-answer').modal('toggle');
-  $(".main-container").removeClass("blurred");
-});
-
-$("#close-delete-answer-modal").on('click', () => {
-  $(".main-container").removeClass("blurred");
-  $('#modal-window-delete-answer').modal('toggle');
 });
 
 async function deleteAnswer(answer_id, e) {
@@ -25,7 +19,6 @@ async function deleteAnswer(answer_id, e) {
     success: function(data) {
       $('#modal-window-delete-answer').modal('toggle');
       $(`#answer-id-${answer_id}`).remove();
-      $(".main-container").removeClass("blurred");
     },
     error: function(data) { 
       $('#remove-answer__progress').addClass('d-none');
@@ -50,3 +43,7 @@ animateProgress = (start) => {
     }, 10);
   });
 }
+
+$('#modal-window-delete-answer').on('hidden.bs.modal', () => {
+  $(".main-container").removeClass("blurred");
+});

@@ -33,8 +33,10 @@
         <div class="answer-wrapper" id="answer-id-<%= answer['_id'] %>">
           <div class="answer-details">
             <div class="actions-container">
-              <%= link_to "/answers/delete?answer_id=#{answer['_id'].to_s}",  {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window', class: 'btn btn-primary btn-lg', form: { "data-type" => "script" }} do %>
-                <i class="fas fa-trash-alt"></i>
+              <% if answer['user'] == current_user %>
+                <%= link_to "/answers/delete?answer_id=#{answer['_id'].to_s}",  {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window', class: 'btn btn-primary btn-lg', form: { "data-type" => "script" }} do %>
+                  <i class="fas fa-trash-alt"></i>
+                <% end %>
               <% end %>
             </div>
             <div class="post-details__content">
