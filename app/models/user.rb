@@ -14,6 +14,8 @@ class User
 
   field :name, type: String
   field :avatar, type: String
+  
+  field :role, type: String
 
   field :email,              type: String, default: ""
   field :encrypted_password, type: String, default: ""
@@ -26,5 +28,9 @@ class User
   field :remember_created_at, type: Time
 
   def will_save_change_to_email? 
+  end
+
+  def super_admin?
+    role == 'super_admin'
   end
 end
