@@ -20,7 +20,7 @@
         </div>
       <% end %>
     </div>
-    <% if current_user %>
+    <% if !current_user %>
       <%= link_to new_question_path, {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window-new-question', form: { "data-type" => "script" }} do %>
         <div class="create-question"><i class="fas fa-plus-circle create-question__icon" id="create-question__icon"></i></div>
       <% end %>

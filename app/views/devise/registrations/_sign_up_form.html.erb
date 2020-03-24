@@ -23,7 +23,7 @@
   </div>
 
   <div class="form-group">
-    <label for="exampleInputPassword1">Password</label>
+    <label for="exampleInputPassword1">Password confirmation</label>
     <input type="password" class="form-control" name="user[password_confirmation]" id="user_password_confirmation">
   </div>
 
@@ -34,4 +34,7 @@
       </div>
   </div>
   <% end %>
+  <div class="alert alert-danger d-none" role="alert" id="sign_up_error">
+    Oops! Couldn't sign you up.
+  </div>
 </div>

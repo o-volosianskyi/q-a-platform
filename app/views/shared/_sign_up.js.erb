@@ -8,6 +8,33 @@ $('#sign_up_user')
   $("#session-actions").empty().html('<%= link_to "Sign out", destroy_user_session_path, :method => :delete, :class => "btn btn-small" %>')
 })
 .bind("ajax:error", function(evt, xhr, status, error) {
-  //function called on status: 401 or 500 (for ex.)
-  console.log(xhr.responseText);
+  $("#sign_up_error").removeClass('d-none');
+  $("#sign_up_error").append(`<br/> (${pareseErrors(xhr.responseText)})`)
 });
+
+$('#sign_up_user').submit(function () {
+  resetErrors();
+});
+
+$('#modal-window-sign-in').on('hidden.bs.modal', function () {
+  resetErrors();
+});
+
+resetErrors = () => {
+  $("#sign_in_error").addClass('d-none');
+  $("#sign_in_error").empty().append('Oops! Couldn\'t sign you in.')
+}
+
+pareseErrors = (errors) => {
+  errorMessage = '';
+  try {
+    errors = JSON.parse(errors);
+    let errorMessage = '';
+    for (const key in errors['errors']) {
+      errorMessage += `${key}: ${errors['errors'][key]} <br/>`;
+    }
+    return errorMessage.slice(0, errorMessage.lastIndexOf(' <br/>'));
+  } catch (e) {
+    return null;
+  }
+}

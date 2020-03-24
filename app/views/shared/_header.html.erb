@@ -3,12 +3,12 @@
   <div class="dropdown dropdown__user">
     <div class="user-actions" id="user-actions__dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user-circle user-actions__icon"></i></div>
     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <% if current_user %>
-          <%= link_to "Sign out", destroy_user_session_path, :method => :delete, :class => 'btn btn-small w-20' %>
-        <% else %>
-          <%= link_to "Sign in", "/users/sign_in", {:remote => true, class: 'btn btn-primary user-actions__button', 'data-toggle' =>  "modal", 'data-target' => '#modal-window-sign-in', form: { "data-type" => "script" }} %>
-          <%= link_to "Sign up", "/users/sign_up", {:remote => true, class: 'btn btn-primary user-actions__button', 'data-toggle' =>  "modal", 'data-target' => '#modal-window-sign-in', form: { "data-type" => "script" }} %>
-        <% end %>
+      <% if current_user %>
+        <%= link_to "Sign out", destroy_user_session_path, :method => :delete, :class => 'btn btn-small w-20' %>
+      <% else %>
+        <%= link_to "Sign in", new_user_session_path, {:remote => true, class: 'btn btn-primary user-actions__button', 'data-toggle' =>  "modal", 'data-target' => '#modal-window-sign-in', form: { "data-type" => "script" }} %>
+        <%= link_to "Sign up", new_user_registration_path, {:remote => true, class: 'btn btn-primary user-actions__button', 'data-toggle' =>  "modal", 'data-target' => '#modal-window-sign-in', form: { "data-type" => "script" }} %>
+      <% end %>
     </div>
   </div>
 </div>

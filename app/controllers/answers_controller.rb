@@ -19,7 +19,11 @@ class AnswersController < ActionController::Base
   end
 
   def destroy
-    answer = Answer.find(params[:id]).destroy!
+    answer = Answer.find(params[:id]).
+    return render json: { description: 'User is not authorized to perform this action' }, status: 401 unless current_user.present? && 
+                                                                                                             (current_user.super_admin? || (answer['user'] == current_user) 
+    
+    answer.destroy!
     render json: answer
   end
 

@@ -28,14 +28,6 @@ module QAPlatform
 
     config.assets.check_precompiled_asset = false
 
-    def after_sign_out_path_for(resource_or_scope)
-      if current_user
-        request.referrer
-      else
-        root_path
-      end
-    end
-
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading

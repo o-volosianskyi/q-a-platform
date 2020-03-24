@@ -33,7 +33,7 @@
         <div class="answer-wrapper" id="answer-id-<%= answer['_id'] %>">
           <div class="answer-details">
             <div class="actions-container">
-              <% if answer['user'] == current_user || current_user.super_admin? %>
+              <% if  current_user && (answer['user'] == current_user || current_user.super_admin?) %>
                 <%= link_to "/answers/delete?answer_id=#{answer['_id'].to_s}",  {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window', form: { "data-type" => "script" }} do %>
                   <i class="fas fa-trash-alt delete-answer__button--icon"></i>
                 <% end %>
@@ -84,5 +84,4 @@
     </div>
   </div>
   <div class="footer"></div>
-
 </div>
