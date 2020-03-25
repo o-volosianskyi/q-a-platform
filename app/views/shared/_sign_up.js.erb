@@ -1,0 +1,40 @@
+$("#modal-window-sign-in").find(".modal-content").html("<%= j (render 'sign_up_form') %>");
+$("#modal-window-sign-in").modal();
+
+$('#sign_up_user')
+.bind('ajax:success', function(evt, data, status, xhr) {
+  //function called on status: 200 (for ex.)
+  $('#modal-window-sign-in').modal('toggle');
+  $("#session-actions").empty().html('<%= link_to "Sign out", destroy_user_session_path, :method => :delete, :class => "btn btn-small" %>')
+})
+.bind("ajax:error", function(evt, xhr, status, error) {
+  $("#sign_up_error").removeClass('d-none');
+  $("#sign_up_error").append(`<br/> (${pareseErrors(xhr.responseText)})`)
+});
+
+$('#sign_up_user').submit(function () {
+  resetErrors();
+});
+
+$('#modal-window-sign-in').on('hidden.bs.modal', function () {
+  resetErrors();
+});
+
+resetErrors = () => {
+  $("#sign_in_error").addClass('d-none');
+  $("#sign_in_error").empty().append('Oops! Couldn\'t sign you in.')
+}
+
+pareseErrors = (errors) => {
+  errorMessage = '';
+  try {
+    errors = JSON.parse(errors);
+    let errorMessage = '';
+    for (const key in errors['errors']) {
+      errorMessage += `${key}: ${errors['errors'][key]} <br/>`;
+    }
+    return errorMessage.slice(0, errorMessage.lastIndexOf(' <br/>'));
+  } catch (e) {
+    return null;
+  }
+}

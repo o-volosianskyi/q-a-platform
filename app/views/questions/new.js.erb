@@ -1,5 +1,6 @@
 $("#modal-window-new-question").find(".modal-content").html("<%= j (render 'create_form') %>");
 $("#modal-window-new-question").modal();
+$(".main-container").addClass("blurred");
 
 var toolbarOptions = [
   ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
@@ -58,7 +59,7 @@ async function createQuestion(title, text, category_id) {
   }); 
 }
 
-const animateProgress = (start) => {
+animateProgress = (start) => {
   return new Promise(resolve => {
     $('#create-question__progress').removeClass('d-none');
     interval = setInterval(() => {
@@ -80,6 +81,8 @@ $('.question-category__option').on('click', (e) => {
 
 $('#modal-window-new-question').on('hidden.bs.modal', function () {
   $("#create-question__error").addClass('d-none')
+  $("#create-question__error").empty().append('Oops! Couldn\'t create your question.')
   $('#create-question__progress').addClass('d-none');
-  $("#create-question__progress-bar").css("width", 0)
+  $("#create-question__progress-bar").css("width", 0);
+  $(".main-container").removeClass("blurred");
 })

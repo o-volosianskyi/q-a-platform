@@ -3,3 +3,8 @@
 @import 'questions';
 @import 'users';
 @import 'welcome';
+@import 'global_header';
+
+.modal-backdrop {
+  z-index: -1 !important;
+}

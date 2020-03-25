@@ -1,0 +1,40 @@
+<div class="modal-header">
+  <h5 class="modal-title">Sign up</h5>
+  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body container justify-content-around">
+  <%= form_for(User.new, url: registration_path(:user), html: {id: 'sign_up_user', :'data-type' => 'json'}, remote: true) do |f| %>
+  <div class="form-group">
+    <label for="exampleInputName1">Name</label>
+    <input type="text" class="form-control" value="" name="user[name]" id="user_name">
+  </div>
+
+  <div class="form-group">
+    <label for="exampleInputEmail1">Email address</label>
+    <input type="email" class="form-control" value="" name="user[email]" id="user_email" aria-describedby="emailHelp">
+    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+  </div>
+
+  <div class="form-group">
+    <label for="exampleInputPassword1">Password</label>
+    <input type="password" class="form-control" name="user[password]" id="user_password">
+  </div>
+
+  <div class="form-group">
+    <label for="exampleInputPassword1">Password confirmation</label>
+    <input type="password" class="form-control" name="user[password_confirmation]" id="user_password_confirmation">
+  </div>
+
+  <div class="modal-footer d-flex flex-column align-items-start">
+    <button type="submit" class="btn btn-primary" id='create-question__button'>Sign up</button>
+      <div class="form-group">
+        <%= render "devise/shared/links" %>
+      </div>
+  </div>
+  <% end %>
+  <div class="alert alert-danger d-none" role="alert" id="sign_up_error">
+    Oops! Couldn't sign you up.
+  </div>
+</div>

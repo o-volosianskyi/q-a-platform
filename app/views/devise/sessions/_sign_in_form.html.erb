@@ -1,0 +1,38 @@
+<div class="modal-header">
+  <h5 class="modal-title">Sign in</h5>
+  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body container justify-content-around">
+  <%= form_for(User.new, url: session_path(:user), html: {id: 'sign_in_user', :'data-type' => 'json'}, remote: true) do |f| %>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Email address</label>
+    <input type="email" class="form-control" value="" name="user[email]" id="user_email" aria-describedby="emailHelp">
+    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+  </div>
+
+  <div class="form-group">
+    <label for="exampleInputPassword1">Password</label>
+    <input type="password" class="form-control" name="user[password]" id="user_password">
+  </div>
+
+  <% if devise_mapping.rememberable? %>
+  <div class="form-check">
+    <%= f.check_box :remember_me, class: 'form-check-input', id: 'remember-me', style: 'margin-left: 0rem;'%>
+    <label class="form-check-label" for="remember-me">
+      Remember me
+    </label>
+  </div>
+  <% end %>
+  <div class="alert alert-danger d-none" role="alert" id="sign_in_error">
+    Oops! Couldn't sign you in.
+  </div>
+  <div class="modal-footer d-flex flex-column align-items-start">
+    <button type="submit" class="btn btn-primary" id='create-question__button'>Sign in</button>
+      <div class="form-group">
+        <%= render "devise/shared/links" %>
+      </div>
+  </div>
+  <% end %>
+</div>
